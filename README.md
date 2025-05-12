@@ -1,10 +1,12 @@
-# Exploring the Effect of Context-Awareness and Popularity Calibration on Popularity Bias in POI Recommendations
+# Balancing the Unfairness of Over- and Undertourism Through Context-Aware Point-of-Interest Recommendation
+
+
+This repository includes the necessary code to reproduce the results for my Master's Thesis to achieve the university degree of Master of Science in Computational Social Systems at the Technical University of Graz & University of Graz.
 
 
 ## Abstract
 
-Point-of-interest (POI) recommender systems help users discover relevant locations, but their effectiveness is often compromised by popularity bias, which disadvantages less popular yet potentially meaningful places. This paper addresses the challenge by evaluating the effectiveness of context-aware models and calibrated popularity techniques as strategies for mitigating popularity bias. Using four real-world POI datasets (Brightkite, Foursquare, Gowalla, Yelp), we analyze the individual and combined effects of these approaches on recommendation accuracy and popularity bias.
-Our results reveal that context-aware models cannot be considered a uniform solution, as the models studied exhibit divergent impacts on accuracy and bias. In contrast, calibration techniques can effectively align recommendation popularity with user preferences, provided there is a careful balance between accuracy and bias mitigation. Notably, the combination of calibration and context-awareness yields recommendations that balance accuracy and close alignment with the users' popularity profiles, i.e., popularity calibration.
+Point-of-interest (POI) recommender systems support users in travel planning and discovering relevant locations, but their effectiveness is often compromised by popularity bias, favoring a few highly visited places while neglecting niche, yet potentially meaningful POI and users with diverse preferences. This bias can contribute to overtourism by repeatedly promoting already popular POI, exacerbating infrastructural bottlenecks and prompting destinations to implement restrictive measures, while alternative places remain overlooked and miss out on the benefits of tourism. Using four publicly available datasets (Brightkite, Foursquare, Gowalla, Yelp) and one internal dataset (Snow Card), this thesis analyzes the individual and combined effects of context-awareness and popularity calibration on recommendation accuracy and popularity bias. The offline evaluation shows that the effectiveness of context-aware models depends on the chosen algorithm and dataset, while popularity calibration can align recommendations with user profiles - provided the baseline already includes sufficient long-tail items. Notably, combining context-awareness with popularity calibration helps overcome the limitations of each method, yielding recommendations that better reflect user preferences and enhance the accuracy of context-aware models. Given the challenges of user studies and online evaluation in the POI domain, a user study framework is proposed to assess the real-world impact of this combined bias mitigation approach. The thesis offers a blueprint for leveraging recommender systems as soft tools to address overtourism, and emphasizes the need for open, up-to-date datasets to support reproducibility and further research.
 
 
 ## Results
@@ -93,6 +95,7 @@ In the hyperopt package, in hyperopt/pyll/stochastic.py", line 100, in randint
 
 
 #### CAPRI
+
 To use [CAPRI](https://github.com/CapriRecSys/CAPRI), clone the repository and create a virtual environment. Make sure to use Python 3.9x. 
 
 In the current repository, in the folder ```capri_context_recs``` you can find some files that need to be exchanged in the repository in order to fit our use case: 
@@ -108,6 +111,10 @@ In the current repository, in the folder ```capri_context_recs``` you can find s
 6. In the ```config.py```you can specify which contexts (Geographical, Social, Temporal, Interaction) each dataset features. For our study, social connections are not relevant, therefore we remove them from the data. Run the script ```main.py``` and choose the desired model and dataset. To reproduce the results, use "sum" fusion method. Create a folder with this exact structure in the ```BASE_DIR/datasets/<dataset>_dataset/recommendations``` subdirectory: ```<dataset>_sample-contextpoi-<model_name>-Jan-01-2024_09-00-00``` and manually place the respective Outputs/Eval_ and Outputs/Scores_ files for the respective model into this directory. Return to this repository, open the script ```capri_postprocessing.py```, specify the desired datasets and run the script to process the outputs (general evaluation and top-k recommendations) to be in line with those produced by RecBole.
 
 Note: In case of an error in CAPRI try: If you produce multiple recommendations with the same model and dataset, you may have to delete the files inside ```<CAPRI ROOT DIR>/<Models>/<model name>/savedModels```to avoid errors. If you receive an error regarding the dataSize, it may help to include an empty file named socialRelations.txt with the dataset files. Check out their docs [docs](https://capri.readthedocs.io/en/latest/index.html) for further information.
+
+
+Alternatively, clone [my fork of the CAPRI repository](https://github.com/andreafooo/CAPRI) to skip the steps above.  
+
 
 ### Popularity Calibration
 
