@@ -1,5 +1,6 @@
 # Balancing the Unfairness of Over- and Undertourism Through Context-Aware Point-of-Interest Recommendation
 
+Author: Andrea Forster, BA
 
 This repository includes the necessary code to reproduce the results for my Master's Thesis to achieve the university degree of Master of Science in Computational Social Systems at the Technical University of Graz & University of Graz.
 
